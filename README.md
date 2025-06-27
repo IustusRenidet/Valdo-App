@@ -8,7 +8,13 @@ Este proyecto es un ejemplo simple de una aplicación estilo "Instagram" en Reac
 - `#d2d5af`
 - `#dfa49b`
 
+
+Para evitar incluir archivos binarios en el repositorio, las imágenes de ejemplo usadas en `App.js` se cargan desde URLs remotas. Puedes reemplazarlas por tus propias rutas o imágenes en la nube.
+
+El archivo `firebase.js` incluido en el proyecto muestra cómo inicializar **Firebase**. Debes completarlo con la configuración de tu proyecto para que la aplicación pueda leer y escribir datos en la nube.
+=======
 Para evitar incluir archivos binarios en el repositorio, las imagenes de ejemplo usadas en `App.js` se cargan desde URLs remotas. Puedes reemplazarlas por tus propias rutas o imagenes en la nube.
+
 ## Instalación
 
 1. Asegúrate de tener **Node.js** instalado.
@@ -24,7 +30,11 @@ Para evitar incluir archivos binarios en el repositorio, las imagenes de ejemplo
    ```bash
    npm start
    ```
+
+   Esto abrirá el servidor de Expo y mostrará un código QR. Escanea ese código con la aplicación **Expo Go** en tu dispositivo móvil para ver la app en funcionamiento.
+=======
    Esto abrirá el servidor de Expo para poder usar **Expo Go** en tu dispositivo móvil.
+
 
 ## Conexión a una base de datos en la nube
 
@@ -37,7 +47,11 @@ A continuación se listan pasos generales para conectar la aplicación a un serv
    ```bash
    npm install firebase
    ```
+
+5. Edita el archivo `firebase.js` incluido en la raíz del proyecto con la configuración de tu aplicación de Firebase. Si no existe, créalo con el siguiente contenido:
+=======
 5. Crea un archivo `firebase.js` en la raíz del proyecto con el siguiente código:
+
    ```javascript
    import { initializeApp } from 'firebase/app';
    import { getFirestore } from 'firebase/firestore';
