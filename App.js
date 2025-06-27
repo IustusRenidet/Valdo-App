@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
 
+
 // Placeholder posts with remote images so no binary assets are needed
 const SAMPLE_POSTS = [
   {
@@ -24,6 +25,7 @@ export default function App() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+
     const fetchPosts = async () => {
       try {
         const snapshot = await getDocs(collection(db, 'posts'));
@@ -36,6 +38,10 @@ export default function App() {
       }
     };
     fetchPosts();
+
+    // In a real app this would fetch posts from the cloud database
+    setPosts(SAMPLE_POSTS);
+
   }, []);
 
   const renderItem = ({ item }) => (
