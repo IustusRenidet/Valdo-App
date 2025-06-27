@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View, Text, FlatList, Image, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from './firebase';
 
 // Placeholder posts with remote images so no binary assets are needed
 const SAMPLE_POSTS = [
@@ -22,8 +24,18 @@ export default function App() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    // In a real app this would fetch posts from the cloud database
-    setPosts(SAMPLE_POSTS);
+    const fetchPosts = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, 'posts'));
+        const items = [];
+        snapshot.forEach(doc => items.push({ id: doc.id, ...doc.data() }));
+        setPosts(items);
+      } catch (e) {
+        console.log('Error fetching posts, usando muestra local', e);
+        setPosts(SAMPLE_POSTS);
+      }
+    };
+    fetchPosts();
   }, []);
 
   const renderItem = ({ item }) => (
